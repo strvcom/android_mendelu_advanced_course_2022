@@ -1,4 +1,4 @@
-package com.strv.mendelutesting.screens.dashboard
+package com.strv.mendelutesting.ui.dashboard
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.strv.mendelutesting.screens.AppScreen
+import com.strv.mendelutesting.logic.AppScreens
 
 @Composable
 fun DashboardScreen(
@@ -29,7 +29,7 @@ fun DashboardScreen(
                     .clickable {
                         onReportClick()
                     },
-                text = stringResource(id = AppScreen.Dashboard.name),
+                text = stringResource(id = AppScreens.Dashboard.name),
                 color = Color.Red,
             )
         }

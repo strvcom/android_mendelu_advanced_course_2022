@@ -1,4 +1,4 @@
-package com.strv.mendelutesting.screens.report
+package com.strv.mendelutesting.ui.report
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.strv.mendelutesting.screens.AppScreen
+import com.strv.mendelutesting.logic.AppScreens
 
 @Composable
 fun ReportScreen() {
@@ -21,7 +21,7 @@ fun ReportScreen() {
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
             Text(
-                text = stringResource(id = AppScreen.Report.name),
+                text = stringResource(id = AppScreens.Report.name),
                 modifier = Modifier.align(Alignment.Center),
                 color = Color.Blue
             )

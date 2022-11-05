@@ -1,19 +1,19 @@
-package com.strv.mendelutesting.screens
+package com.strv.mendelutesting.logic
 
 import androidx.annotation.StringRes
 import com.strv.mendelutesting.R
 
-sealed class AppScreen(
+sealed class AppScreens(
     val route: String,
     @StringRes val name: Int,
 ) {
 
-    object Dashboard : AppScreen(
+    object Dashboard : AppScreens(
         route = "dashboard",
         name = R.string.dashboard_title
     )
 
-    object Report : AppScreen(
+    object Report : AppScreens(
         route = "report",
         name = R.string.report_title
     )
