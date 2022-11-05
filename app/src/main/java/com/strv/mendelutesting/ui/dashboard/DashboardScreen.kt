@@ -12,10 +12,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.strv.mendelutesting.logic.navigation.AppScreens
 
 @Composable
 fun DashboardScreen(
+    viewModel: DashboardViewModel = hiltViewModel(),
     onReportClick: () -> Unit
 ) {
     Surface(
@@ -26,9 +28,7 @@ fun DashboardScreen(
             Text(
                 modifier = Modifier
                     .align(Alignment.Center)
-                    .clickable {
-                        onReportClick()
-                    },
+                    .clickable { onReportClick() },
                 text = stringResource(id = AppScreens.Dashboard.name),
                 color = Color.Red,
             )
