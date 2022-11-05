@@ -3,7 +3,6 @@ package com.strv.mendelutesting
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.strv.mendelutesting.screens.DashboardScreen
 import com.strv.mendelutesting.ui.theme.MendeluTestingTheme
 
 class MainActivity : ComponentActivity() {
@@ -11,7 +10,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MendeluTestingTheme {
-                DashboardScreen()
+                Navigation()
             }
         }
     }

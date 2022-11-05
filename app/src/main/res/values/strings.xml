@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Mendelu Testing</string>
+
+    <string name="dashboard_title">Dashboard</string>
+
+    <string name="report_title">Report weather</string>
 </resources>
