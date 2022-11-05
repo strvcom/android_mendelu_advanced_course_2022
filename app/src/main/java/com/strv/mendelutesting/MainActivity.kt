@@ -3,6 +3,7 @@ package com.strv.mendelutesting
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import com.strv.mendelutesting.logic.navigation.Navigation
 import com.strv.mendelutesting.ui.theme.MendeluTestingTheme
 
 class MainActivity : ComponentActivity() {

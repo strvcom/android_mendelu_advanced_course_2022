@@ -1,4 +1,4 @@
-package com.strv.mendelutesting
+package com.strv.mendelutesting.logic.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -6,7 +6,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.strv.mendelutesting.logic.AppScreens
 import com.strv.mendelutesting.ui.dashboard.DashboardScreen
 import com.strv.mendelutesting.ui.report.ReportScreen
 

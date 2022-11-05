@@ -1,4 +1,4 @@
-package com.strv.mendelutesting.logic
+package com.strv.mendelutesting.logic.navigation
 
 import androidx.annotation.StringRes
 import com.strv.mendelutesting.R
