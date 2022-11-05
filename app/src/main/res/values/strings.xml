@@ -1,10 +1,13 @@
 <resources>
     <string name="app_name">Mendelu Testing</string>
 
+    <!--    Dashboard     -->
     <string name="dashboard_title">Dashboard</string>
 
+    <!--    Report       -->
     <string name="report_title">Report weather</string>
 
+    <!--    Wind direction     -->
     <string name="wind_direction_n">N</string>
     <string name="wind_direction_ne">NE</string>
     <string name="wind_direction_e">E</string>
@@ -13,4 +16,13 @@
     <string name="wind_direction_sw">SW</string>
     <string name="wind_direction_w">W</string>
     <string name="wind_direction_nw">NW</string>
+
+    <!--    Temperature     -->
+    <string name="unit_of_temperature_celsius">Celsius [°C]</string>
+    <string name="unit_of_temperature_kelvin">Kelvin [K]</string>
+    <string name="unit_of_temperature_fahrenheit">Fahrenheit [°F]</string>
+    <string name="unit_of_temperature_celsius_value">%.1f °C</string>
+    <string name="unit_of_temperature_kelvin_value">%.1f K</string>
+    <string name="unit_of_temperature_fahrenheit_value">%.1f °F</string>
+
 </resources>
