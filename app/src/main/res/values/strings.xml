@@ -3,6 +3,9 @@
 
     <!--    Dashboard     -->
     <string name="dashboard_title">Dashboard</string>
+    <string name="dashboard_temperature">Temperature: %s</string>
+    <string name="dashboard_wind">Wind: %s</string>
+    <string name="dashboard_report">Report weather</string>
 
     <!--    Report       -->
     <string name="report_title">Report weather</string>

@@ -1,10 +1,14 @@
 package com.strv.mendelutesting.data
 
+import kotlinx.coroutines.delay
 import kotlin.random.Random
 
 object ServerMock {
 
     suspend fun getCurrentWeather(): CurrentWeather {
+        val responseTime = Random.nextInt(from = 500, until = 1000).toLong()
+        delay(responseTime)
+
         return CurrentWeather(
             city = mockCity(),
             temperature = mockTemperature(),
