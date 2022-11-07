@@ -1,6 +1,8 @@
 package com.strv.mendelutesting.ui.dashboard
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -15,6 +17,8 @@ import com.strv.mendelutesting.R
 import com.strv.mendelutesting.data.CurrentWeather
 import com.strv.mendelutesting.logic.TemperatureUnitsEnum
 import com.strv.mendelutesting.logic.WindDirectionsEnum
+import com.strv.mendelutesting.ui.dashboard.components.Compass
+import com.strv.mendelutesting.ui.dashboard.components.TemperatureUnitsSelection
 import timber.log.Timber
 
 @Composable
@@ -32,7 +36,8 @@ fun DashboardScreen(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp),
+                .padding(16.dp)
+                .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(24.dp)
         ) {
             CurrentWeatherData(
@@ -45,7 +50,10 @@ fun DashboardScreen(
 
             Divider()
 
-            TemperatureUnits()
+            TemperatureUnitsSelection(
+                selectedUnit = uiState.temperatureUnit,
+                onUnitChange = viewModel::onTemperatureUnitChange
+            )
 
             Divider()
 
@@ -68,7 +76,7 @@ private fun CurrentWeatherData(
     ) {
         //  City info
         Text(
-            text = currentWeather.city,
+            text = currentWeather.city.uppercase(),
             style = MaterialTheme.typography.h2.copy(fontWeight = FontWeight.Bold)
         )
 
@@ -93,21 +101,6 @@ private fun CurrentWeatherData(
 }
 
 @Composable
-private fun Compass() {
-    Text(text = "compass")
-}
-
-@Composable
-private fun TemperatureUnits() {
-    Column(modifier = Modifier.fillMaxWidth()) {
-        Text(
-            text = stringResource(id = R.string.dashboard_temperature_units),
-            style = MaterialTheme.typography.subtitle1.copy(fontWeight = FontWeight.Bold)
-        )
-    }
-}
-
-@Composable
 private fun ReportWeather(onReportClick: () -> Unit) {
     Button(
         modifier = Modifier.fillMaxWidth(),
@@ -119,7 +112,7 @@ private fun ReportWeather(onReportClick: () -> Unit) {
 
 @Preview
 @Composable
-private fun DashboardScreenPreview() {
+private fun DashboardScreen_Preview() {
     DashboardScreen(
         onReportClick = {}
     )
