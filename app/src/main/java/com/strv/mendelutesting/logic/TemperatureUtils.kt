@@ -2,6 +2,9 @@ package com.strv.mendelutesting.logic
 
 import android.content.Context
 import androidx.annotation.StringRes
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.ReadOnlyComposable
+import androidx.compose.ui.res.stringResource
 import com.strv.mendelutesting.R
 
 enum class TemperatureUnitsEnum(
@@ -36,18 +39,19 @@ enum class TemperatureUnitsEnum(
 
     /**
      *  Convert base celsius temperature to selected unit system and format to string value with corresponding symbol.
-     *  @param context application context
      *  @param valueCelsius value in base unit - Celsius
      *
      *  @return "30.0 °C" for Celsius
      *  @return "86.0 °F" for Fahrenheit
      *  @return "303.2 K" for Kelvin
      * */
-    fun formatTemperature(context: Context, valueCelsius: Double): String {
+    @Composable
+    @ReadOnlyComposable
+    fun formatTemperature(valueCelsius: Double): String {
         return when (this) {
-            KELVIN -> context.getString(formatValue, convertCelsiusToKelvin(valueCelsius))
-            FAHRENHEIT -> context.getString(formatValue, convertCelsiusToFahrenheit(valueCelsius))
-            CELSIUS -> context.getString(formatValue, valueCelsius)
+            KELVIN -> stringResource(formatValue, convertCelsiusToKelvin(valueCelsius))
+            FAHRENHEIT -> stringResource(formatValue, convertCelsiusToFahrenheit(valueCelsius))
+            CELSIUS -> stringResource(formatValue, valueCelsius)
         }
     }
 }
