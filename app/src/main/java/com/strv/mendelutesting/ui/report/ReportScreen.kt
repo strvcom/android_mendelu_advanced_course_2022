@@ -1,36 +1,77 @@
 package com.strv.mendelutesting.ui.report
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
-import com.strv.mendelutesting.logic.navigation.AppScreens
+import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.strv.mendelutesting.R
 
 @Composable
-fun ReportScreen() {
-    Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colors.background
-    ) {
-        Box(modifier = Modifier.fillMaxSize()) {
-            Text(
-                text = stringResource(id = AppScreens.Report.name),
-                modifier = Modifier.align(Alignment.Center),
-                color = Color.Blue
-            )
-        }
-    }
+fun ReportScreen(
+	viewModel: ReportViewModel = hiltViewModel(),
+) {
+	val state by viewModel.state.collectAsState()
+
+	Surface(
+		modifier = Modifier.fillMaxSize(),
+		color = MaterialTheme.colors.background
+	) {
+		Column(
+			modifier = Modifier
+				.fillMaxWidth()
+				.padding(16.dp),
+			verticalArrangement = Arrangement.spacedBy(24.dp)
+		) {
+			BasicTextField(
+				onValueChange = viewModel::updateEmailValue,
+				value = state.emailValue,
+				textStyle = TextStyle.Default.copy(color = MaterialTheme.colors.onBackground),
+				cursorBrush = SolidColor(MaterialTheme.colors.onBackground),
+				maxLines = 1,
+				modifier = Modifier.fillMaxWidth().background(MaterialTheme.colors.secondary).padding(8.dp).testTag("email")
+			)
+			AnimatedVisibility(
+				visible = state.showError,
+				enter = fadeIn(),
+				exit = fadeOut()
+			) {
+				Box {
+					Text(
+						text = stringResource(id = R.string.invalid_email),
+						color = MaterialTheme.colors.error
+					)
+				}
+			}
+			Spacer(modifier = Modifier.weight(weight = 1f, fill = true))
+			Button(
+				modifier = Modifier.fillMaxWidth(),
+				onClick = viewModel::sendReport
+			) {
+				Text(text = stringResource(id = R.string.send_report))
+			}
+		}
+	}
 }
 
 @Preview
 @Composable
 private fun ReportScreenPreview() {
-    ReportScreen()
+	ReportScreen()
 }

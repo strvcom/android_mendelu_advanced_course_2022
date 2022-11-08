@@ -9,6 +9,8 @@
 
     <!--    Report       -->
     <string name="report_title">Report weather</string>
+    <string name="send_report">Send report</string>
+    <string name="invalid_email">Invalid email</string>
 
     <!--    Wind direction     -->
     <string name="wind_direction_n">N</string>
