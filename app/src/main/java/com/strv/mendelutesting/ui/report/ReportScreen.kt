@@ -25,53 +25,57 @@ import com.strv.mendelutesting.R
 
 @Composable
 fun ReportScreen(
-	viewModel: ReportViewModel = hiltViewModel(),
+    viewModel: ReportViewModel = hiltViewModel(),
 ) {
-	val state by viewModel.state.collectAsState()
+    val state by viewModel.state.collectAsState()
 
-	Surface(
-		modifier = Modifier.fillMaxSize(),
-		color = MaterialTheme.colors.background
-	) {
-		Column(
-			modifier = Modifier
+    Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = MaterialTheme.colors.background
+    ) {
+        Column(
+            modifier = Modifier
 				.fillMaxWidth()
 				.padding(16.dp),
-			verticalArrangement = Arrangement.spacedBy(24.dp)
-		) {
-			BasicTextField(
-				onValueChange = viewModel::updateEmailValue,
-				value = state.emailValue,
-				textStyle = TextStyle.Default.copy(color = MaterialTheme.colors.onBackground),
-				cursorBrush = SolidColor(MaterialTheme.colors.onBackground),
-				maxLines = 1,
-				modifier = Modifier.fillMaxWidth().background(MaterialTheme.colors.secondary).padding(8.dp).testTag("email")
-			)
-			AnimatedVisibility(
-				visible = state.showError,
-				enter = fadeIn(),
-				exit = fadeOut()
-			) {
-				Box {
-					Text(
-						text = stringResource(id = R.string.invalid_email),
-						color = MaterialTheme.colors.error
-					)
-				}
-			}
-			Spacer(modifier = Modifier.weight(weight = 1f, fill = true))
-			Button(
-				modifier = Modifier.fillMaxWidth(),
-				onClick = viewModel::sendReport
-			) {
-				Text(text = stringResource(id = R.string.send_report))
-			}
-		}
-	}
+            verticalArrangement = Arrangement.spacedBy(24.dp)
+        ) {
+            BasicTextField(
+                onValueChange = viewModel::updateEmailValue,
+                value = state.emailValue,
+                textStyle = TextStyle.Default.copy(color = MaterialTheme.colors.onBackground),
+                cursorBrush = SolidColor(MaterialTheme.colors.onBackground),
+                maxLines = 1,
+                modifier = Modifier
+					.fillMaxWidth()
+					.background(MaterialTheme.colors.secondary)
+					.padding(8.dp)
+					.testTag("email")
+            )
+            AnimatedVisibility(
+                visible = state.showError,
+                enter = fadeIn(),
+                exit = fadeOut()
+            ) {
+                Box {
+                    Text(
+                        text = stringResource(id = R.string.invalid_email),
+                        color = MaterialTheme.colors.error
+                    )
+                }
+            }
+            Spacer(modifier = Modifier.weight(weight = 1f, fill = true))
+            Button(
+                modifier = Modifier.fillMaxWidth(),
+                onClick = viewModel::sendReport
+            ) {
+                Text(text = stringResource(id = R.string.send_report))
+            }
+        }
+    }
 }
 
 @Preview
 @Composable
 private fun ReportScreenPreview() {
-	ReportScreen()
+    ReportScreen()
 }
