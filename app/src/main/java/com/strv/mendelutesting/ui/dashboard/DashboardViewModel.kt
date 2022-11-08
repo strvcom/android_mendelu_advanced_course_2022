@@ -3,6 +3,7 @@ package com.strv.mendelutesting.ui.dashboard
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.strv.mendelutesting.data.ServerMock
+import com.strv.mendelutesting.logic.TemperatureUnitsEnum
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -19,6 +20,10 @@ class DashboardViewModel @Inject constructor() : ViewModel() {
 
     init {
         viewModelScope.launch { fetchActualWeather() }
+    }
+
+    fun onTemperatureUnitChange(unit: TemperatureUnitsEnum) {
+        _state.update { it.copy(temperatureUnit = unit) }
     }
 
     private suspend fun fetchActualWeather() {

@@ -1,10 +1,9 @@
 package com.strv.mendelutesting.ui.dashboard
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Button
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -14,7 +13,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.strv.mendelutesting.R
-import timber.log.Timber
+import com.strv.mendelutesting.ui.dashboard.components.TemperatureUnitsSelection
+import com.strv.mendelutesting.ui.dashboard.components.WeatherInfo
 
 @Composable
 fun DashboardScreen(
@@ -22,47 +22,47 @@ fun DashboardScreen(
     onReportClick: () -> Unit
 ) {
     val uiState by viewModel.state.collectAsState()
-    Timber.d("DashboardScreen uiState = $uiState")
 
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colors.background
     ) {
-        //  TODO - convert units and nicer UI
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp),
+                .padding(16.dp)
+                .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(24.dp)
         ) {
-            uiState.currentWeather?.let {
-                Text(
-                    text = it.city,
-                    style = MaterialTheme.typography.h2
-                )
-                Text(
-                    text = stringResource(id = R.string.dashboard_temperature, it.temperature),
-                    style = MaterialTheme.typography.h4
-                )
-                Text(
-                    text = stringResource(id = R.string.dashboard_wind, it.windDirection),
-                    style = MaterialTheme.typography.h4
-                )
-            }
+            WeatherInfo(
+                currentWeather = uiState.currentWeather,
+                temperatureUnit = uiState.temperatureUnit
+            )
+            Divider()
+            TemperatureUnitsSelection(
+                selectedUnit = uiState.temperatureUnit,
+                onUnitChange = viewModel::onTemperatureUnitChange
+            )
+            Divider()
             Spacer(modifier = Modifier.weight(1f))
-            Button(
-                modifier = Modifier.fillMaxWidth(),
-                onClick = onReportClick
-            ) {
-                Text(text = stringResource(id = R.string.dashboard_report))
-            }
+            ReportWeather(onReportClick = onReportClick)
         }
+    }
+}
+
+@Composable
+private fun ReportWeather(onReportClick: () -> Unit) {
+    Button(
+        modifier = Modifier.fillMaxWidth(),
+        onClick = onReportClick
+    ) {
+        Text(text = stringResource(id = R.string.dashboard_report))
     }
 }
 
 @Preview
 @Composable
-private fun DashboardScreenPreview() {
+private fun DashboardScreen_Preview() {
     DashboardScreen(
         onReportClick = {}
     )
