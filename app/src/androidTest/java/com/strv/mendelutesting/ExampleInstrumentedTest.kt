@@ -44,56 +44,43 @@ import org.junit.runners.MethodSorters
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 class ExampleInstrumentedTest {
 
+    // TODO keep but remove later?
     val targetContext: Context = InstrumentationRegistry.getInstrumentation().targetContext
 
     @get:Rule(order = 0)
     val hiltRule = HiltAndroidRule(this)
 
-    /*@get:Rule(order = 1)
-    var testRule = ActivityScenario.launch(MainActivity::class.java)//<MainActivity>(Intent(targetContext, MainActivity::class.java)) // TODO fix
-*/
     @get:Rule(order = 1)
     val composeRule = createAndroidComposeRule<MainActivity>() // TestReportActivity
 
     @Before
     fun setUp() {
         hiltRule.inject()
-        /*composeRule.setContent {
-            TallyApp(composeTestRule.activity.viewModels<ListViewModel>().value)
-        }*/
     }
 
     // TODO add navigation etc.
-    private lateinit var registerViewModel: ReportViewModel
+
 
     @Test
     fun test_report_email_isVisible() {
-        //initReportViewModel()
         launchReportScreen()
         composeRule.onNodeWithTag("email").assertIsDisplayed()
         composeRule.onNodeWithTag("email").performTextInput("test@email.com")
         composeRule.onNodeWithTag("email").performClick()
     }
 
-   /* @Test
-    fun useAppContext() {
-        // Context of the app under test.
-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.strv.mendelutesting", appContext.packageName)
-    }*/
-
     private fun launchReportScreen() {
         composeRule.setContent {
-            registerViewModel = hiltViewModel() // keep this or initReportViewModel
+            val reportViewModel = initReportViewModel() // TODO keep this or initReportViewModel
             MaterialTheme {
                 ReportScreen(
-                    viewModel = registerViewModel
+                    viewModel = reportViewModel
                 )
             }
         }
     }
 
-    private fun initReportViewModel() {
-        registerViewModel = composeRule.activity.viewModels<ReportViewModel>().value
+    private fun initReportViewModel(): ReportViewModel {
+        return  composeRule.activity.viewModels<ReportViewModel>().value
     }
 }
