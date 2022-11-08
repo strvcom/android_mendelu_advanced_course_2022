@@ -14,9 +14,9 @@ import androidx.compose.ui.unit.dp
 import com.strv.mendelutesting.R
 import com.strv.mendelutesting.ui.components.CloseButton
 
-const val CONTENT_FAIL = "content_success"
-const val ICON_FAIL = "icon_success"
-const val TEXT_FAIL = "text_success"
+const val TEST_TAG_FAIL_CONTENT = "content_success"
+const val TEST_TAG_FAIL_ICON = "icon_success"
+const val TEST_TAG_FAIL_TEXT = "text_success"
 
 @Composable
 fun FailScreen(onCloseClick: () -> Unit) {
@@ -45,19 +45,19 @@ private fun BoxScope.ContentSuccess() {
     Column(
         modifier = Modifier
             .align(Alignment.Center)
-            .testTag(CONTENT_FAIL),
+            .testTag(TEST_TAG_FAIL_CONTENT),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Icon(
             modifier = Modifier
                 .size(64.dp)
-                .testTag(ICON_FAIL),
+                .testTag(TEST_TAG_FAIL_ICON),
             painter = painterResource(id = R.drawable.ic_fail),
             contentDescription = stringResource(id = R.string.fail_icon_fail_description),
             tint = colorResource(id = R.color.fail)
         )
         Text(
-            modifier = Modifier.testTag(TEXT_FAIL),
+            modifier = Modifier.testTag(TEST_TAG_FAIL_TEXT),
             text = stringResource(id = R.string.fail_title),
             style = MaterialTheme.typography.h5
         )

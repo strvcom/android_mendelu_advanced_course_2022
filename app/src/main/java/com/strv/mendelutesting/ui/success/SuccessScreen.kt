@@ -14,9 +14,9 @@ import androidx.compose.ui.unit.dp
 import com.strv.mendelutesting.R
 import com.strv.mendelutesting.ui.components.CloseButton
 
-const val CONTENT_SUCCESS = "content_success"
-const val ICON_SUCCESS = "icon_success"
-const val TEXT_SUCCESS = "text_success"
+const val TEST_TAG_SUCCESS_CONTENT = "content_success"
+const val TEST_TAG_SUCCESS_ICON = "icon_success"
+const val TEST_TAG_SUCCESS_TEXT = "text_success"
 
 @Composable
 fun SuccessScreen(onCloseClick: () -> Unit) {
@@ -45,19 +45,19 @@ private fun BoxScope.ContentSuccess() {
     Column(
         modifier = Modifier
             .align(Alignment.Center)
-            .testTag(CONTENT_SUCCESS),
+            .testTag(TEST_TAG_SUCCESS_CONTENT),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Icon(
             modifier = Modifier
                 .size(64.dp)
-                .testTag(ICON_SUCCESS),
+                .testTag(TEST_TAG_SUCCESS_ICON),
             painter = painterResource(id = R.drawable.ic_success),
             contentDescription = stringResource(id = R.string.success_icon_success_description),
             tint = colorResource(id = R.color.success)
         )
         Text(
-            modifier = Modifier.testTag(TEXT_SUCCESS),
+            modifier = Modifier.testTag(TEST_TAG_SUCCESS_TEXT),
             text = stringResource(id = R.string.success_title),
             style = MaterialTheme.typography.h5
         )
