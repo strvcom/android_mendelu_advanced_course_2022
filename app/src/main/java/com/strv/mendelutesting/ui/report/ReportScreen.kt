@@ -27,6 +27,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.strv.mendelutesting.R
 
+const val TEST_TAG_REPORT_BUTTON = "report_button"
+
 @Composable
 fun ReportScreen(
     viewModel: ReportViewModel = hiltViewModel(),
@@ -70,7 +72,7 @@ fun ReportScreen(
             }
             Spacer(modifier = Modifier.weight(weight = 1f, fill = true))
             Button(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth().testTag(TEST_TAG_REPORT_BUTTON),
                 onClick = { onSendReportClick() }
             ) {
                 Text(text = stringResource(id = R.string.send_report))
