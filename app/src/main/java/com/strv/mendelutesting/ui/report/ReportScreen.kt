@@ -26,6 +26,7 @@ import com.strv.mendelutesting.R
 @Composable
 fun ReportScreen(
     viewModel: ReportViewModel = hiltViewModel(),
+    onSendReportClick: () -> Unit
 ) {
     val state by viewModel.state.collectAsState()
 
@@ -66,7 +67,7 @@ fun ReportScreen(
             Spacer(modifier = Modifier.weight(weight = 1f, fill = true))
             Button(
                 modifier = Modifier.fillMaxWidth(),
-                onClick = viewModel::sendReport
+                onClick = { onSendReportClick() }
             ) {
                 Text(text = stringResource(id = R.string.send_report))
             }
@@ -77,5 +78,7 @@ fun ReportScreen(
 @Preview
 @Composable
 private fun ReportScreenPreview() {
-    ReportScreen()
+    ReportScreen(
+        onSendReportClick = {}
+    )
 }

@@ -12,7 +12,9 @@ class TestReportActivity : ComponentActivity() {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContent {
-			ReportScreen()
+			ReportScreen(
+				onSendReportClick = {}
+			)
 		}
 	}
 }

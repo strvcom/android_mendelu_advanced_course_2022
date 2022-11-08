@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Mendelu Testing</string>
+    <string name="close">Close</string>
 
     <!--    Dashboard     -->
     <string name="dashboard_title">Dashboard</string>
@@ -12,6 +13,14 @@
     <string name="report_title">Report weather</string>
     <string name="send_report">Send report</string>
     <string name="invalid_email">Invalid email</string>
+
+    <!--    Success       -->
+    <string name="success_title">Success!</string>
+    <string name="success_icon_success_description">Icon of success</string>
+
+    <!--    Error       -->
+    <string name="error_title">Error!</string>
+    <string name="error_icon_error_description">Icon of error</string>
 
     <!--    Wind direction     -->
     <string name="wind_direction_n">N</string>
