@@ -8,5 +8,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="success">#8BC34A</color>
-    <color name="error">#F44336</color>
+    <color name="fail">#F44336</color>
 </resources>

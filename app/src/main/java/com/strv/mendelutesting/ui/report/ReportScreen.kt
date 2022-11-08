@@ -3,7 +3,10 @@ package com.strv.mendelutesting.ui.report
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.combinedClickable
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.Button
@@ -15,6 +18,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -36,8 +40,8 @@ fun ReportScreen(
     ) {
         Column(
             modifier = Modifier
-				.fillMaxWidth()
-				.padding(16.dp),
+                .fillMaxWidth()
+                .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(24.dp)
         ) {
             BasicTextField(
@@ -47,10 +51,10 @@ fun ReportScreen(
                 cursorBrush = SolidColor(MaterialTheme.colors.onBackground),
                 maxLines = 1,
                 modifier = Modifier
-					.fillMaxWidth()
-					.background(MaterialTheme.colors.secondary)
-					.padding(8.dp)
-					.testTag("email")
+                    .fillMaxWidth()
+                    .background(MaterialTheme.colors.secondary)
+                    .padding(8.dp)
+                    .testTag("email")
             )
             AnimatedVisibility(
                 visible = state.showError,
@@ -78,7 +82,5 @@ fun ReportScreen(
 @Preview
 @Composable
 private fun ReportScreenPreview() {
-    ReportScreen(
-        onSendReportClick = {}
-    )
+    ReportScreen(onSendReportClick = {})
 }
