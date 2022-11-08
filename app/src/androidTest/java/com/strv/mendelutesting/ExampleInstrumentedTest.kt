@@ -17,6 +17,7 @@ import com.strv.mendelutesting.ui.MainActivity
 import com.strv.mendelutesting.ui.report.ReportScreen
 import com.strv.mendelutesting.ui.report.ReportViewModel
 import com.strv.mendelutesting.ui.report.TEST_TAG_REPORT_BUTTON
+import com.strv.mendelutesting.ui.report.TEST_TAG_REPORT_EMAIL_INPUT
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import junit.framework.Assert.assertTrue
@@ -57,9 +58,9 @@ class ExampleInstrumentedTest {
     @Test
     fun test_report_email_isVisible() {
         launchReportScreen()
-        composeRule.onNodeWithTag("email").assertIsDisplayed()
-        composeRule.onNodeWithTag("email").performTextInput("test@email.com")
-        composeRule.onNodeWithTag("email").performClick()
+        composeRule.onNodeWithTag(TEST_TAG_REPORT_EMAIL_INPUT).assertIsDisplayed()
+        composeRule.onNodeWithTag(TEST_TAG_REPORT_EMAIL_INPUT).performTextInput("test@email.com")
+        composeRule.onNodeWithTag(TEST_TAG_REPORT_EMAIL_INPUT).performClick()
     }
 
     @Test

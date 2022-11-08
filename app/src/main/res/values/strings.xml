@@ -13,6 +13,8 @@
     <string name="report_title">Report weather</string>
     <string name="send_report">Send report</string>
     <string name="invalid_email">Invalid email</string>
+    <string name="enter_email_hint">Enter Email</string>
+
 
     <!--    Success       -->
     <string name="success_title">Success</string>
