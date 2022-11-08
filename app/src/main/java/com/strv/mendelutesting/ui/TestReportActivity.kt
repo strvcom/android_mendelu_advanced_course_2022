@@ -9,10 +9,12 @@ import dagger.hilt.android.AndroidEntryPoint
 // TODO move to debug folder
 @AndroidEntryPoint
 class TestReportActivity : ComponentActivity() {
-	override fun onCreate(savedInstanceState: Bundle?) {
-		super.onCreate(savedInstanceState)
-		setContent {
-			ReportScreen()
-		}
-	}
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            ReportScreen(
+                onSendReportClick = {}
+            )
+        }
+    }
 }

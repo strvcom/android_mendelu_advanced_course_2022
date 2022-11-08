@@ -23,6 +23,7 @@ val TEST_TAG_REPORT_EMAIL_INPUT = "email_input"
 @Composable
 fun ReportScreen(
 	viewModel: ReportViewModel = hiltViewModel(),
+	onSendReportClick: () -> Unit
 ) {
 	val state by viewModel.state.collectAsState()
 	var expanded by remember { mutableStateOf(false) }
@@ -132,5 +133,5 @@ fun ReportScreen(
 @Preview
 @Composable
 private fun ReportScreenPreview() {
-	ReportScreen()
+	ReportScreen(onSendReportClick = {})
 }

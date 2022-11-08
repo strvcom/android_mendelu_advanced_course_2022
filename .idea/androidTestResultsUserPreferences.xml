@@ -17,12 +17,29 @@
             </AndroidTestResultsTableState>
           </value>
         </entry>
+        <entry key="1595957211">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="19121FDF600149" value="120" />
+                  <entry key="Duration" value="90" />
+                  <entry key="Google&#10; Pixel 6" value="120" />
+                  <entry key="Pixel_3a_API_32_arm64-v8a" value="120" />
+                  <entry key="Tests" value="360" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
         <entry key="1705034689">
           <value>
             <AndroidTestResultsTableState>
               <option name="preferredColumnWidths">
                 <map>
+                  <entry key="19121FDF600149" value="120" />
                   <entry key="Duration" value="90" />
+                  <entry key="Google&#10; Pixel 6" value="120" />
                   <entry key="R3CT40ND1EZ" value="120" />
                   <entry key="Tests" value="360" />
                   <entry key="samsung&#10; SM-S908B" value="120" />

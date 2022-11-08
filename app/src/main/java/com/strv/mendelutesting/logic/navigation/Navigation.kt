@@ -9,7 +9,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.strv.mendelutesting.ui.dashboard.DashboardScreen
 import com.strv.mendelutesting.ui.dashboard.DashboardViewModel
+import com.strv.mendelutesting.ui.fail.FailScreen
 import com.strv.mendelutesting.ui.report.ReportScreen
+import com.strv.mendelutesting.ui.success.SuccessScreen
 
 @Composable
 fun Navigation(
@@ -23,13 +25,19 @@ fun Navigation(
         startDestination = startDestination
     ) {
         composable(AppScreens.Dashboard.route) {
-            DashboardScreen(
-                onReportClick = { navController.navigate(AppScreens.Report.route) }
-            )
+            DashboardScreen(onReportClick = { navController.navigate(AppScreens.Report.route) })
         }
 
         composable(AppScreens.Report.route) {
-            ReportScreen()
+            ReportScreen(onSendReportClick = { navController.navigate(AppScreens.Fail.route) })
+        }
+
+        composable(AppScreens.Success.route) {
+            SuccessScreen(onCloseClick = { navController.popBackStack() })
+        }
+
+        composable(AppScreens.Fail.route) {
+            FailScreen(onCloseClick = { navController.popBackStack() })
         }
     }
 }

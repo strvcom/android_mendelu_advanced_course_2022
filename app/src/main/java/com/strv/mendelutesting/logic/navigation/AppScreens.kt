@@ -18,4 +18,14 @@ sealed class AppScreens(
         name = R.string.report_title
     )
 
+    object Success : AppScreens(
+        route = "success",
+        name = R.string.success_title
+    )
+
+    object Fail : AppScreens(
+        route = "fail",
+        name = R.string.fail_title
+    )
+
 }
