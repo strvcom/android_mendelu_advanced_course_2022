@@ -99,11 +99,7 @@ class ExampleInstrumentedTest {
             onNodeWithTag(TEST_TAG_REPORT_EMAIL_INPUT).assertIsDisplayed()
             onNodeWithTag(TEST_TAG_REPORT_EMAIL_INPUT).performTextInput("valid@email.com")
             onNodeWithTag(TEST_TAG_REPORT_DESCRIPTION_INPUT).performTextInput("some description")
-            onNodeWithTag(TEST_TAG_REPORT_WEATHER_DROPDOWN_CLICKABLE_AREA).performClick()
-            onNode(
-                hasText(WeatherType.SNOWING.displayName),
-                useUnmergedTree = true
-            ).performClick()
+            performDropdownSelection(WeatherType.SNOWING)
 
             onNode(
                 hasText(WeatherType.SNOWING.displayName),
@@ -131,11 +127,7 @@ class ExampleInstrumentedTest {
             onNodeWithTag(TEST_TAG_REPORT_EMAIL_INPUT).assertIsDisplayed()
             onNodeWithTag(TEST_TAG_REPORT_EMAIL_INPUT).performTextInput("valid@email.com")
             onNodeWithTag(TEST_TAG_REPORT_DESCRIPTION_INPUT).performTextInput("some description")
-            onNodeWithTag(TEST_TAG_REPORT_WEATHER_DROPDOWN_CLICKABLE_AREA).performClick()
-            onNode(
-                hasText(WeatherType.STORM.displayName),
-                useUnmergedTree = true
-            ).performClick()
+            performDropdownSelection(WeatherType.STORM)
 
             onNodeWithTag(TEST_TAG_REPORT_BUTTON).assertIsEnabled()
         }
@@ -148,11 +140,7 @@ class ExampleInstrumentedTest {
             onNodeWithTag(TEST_TAG_REPORT_EMAIL_INPUT).assertIsDisplayed()
             onNodeWithTag(TEST_TAG_REPORT_EMAIL_INPUT).performTextInput("valid@email.com")
             onNodeWithTag(TEST_TAG_REPORT_DESCRIPTION_INPUT).performTextInput("some description")
-            onNodeWithTag(TEST_TAG_REPORT_WEATHER_DROPDOWN_CLICKABLE_AREA).performClick()
-            onNode(
-                hasText(WeatherType.STORM.displayName),
-                useUnmergedTree = true
-            ).performClick()
+            performDropdownSelection(WeatherType.STORM)
             onNodeWithTag(TEST_TAG_REPORT_BUTTON).performClick()
             waitForIdle()
 
@@ -168,17 +156,21 @@ class ExampleInstrumentedTest {
             onNodeWithTag(TEST_TAG_REPORT_EMAIL_INPUT).assertIsDisplayed()
             onNodeWithTag(TEST_TAG_REPORT_EMAIL_INPUT).performTextInput("valid@email.com")
             onNodeWithTag(TEST_TAG_REPORT_DESCRIPTION_INPUT).performTextInput("some description")
-            onNodeWithTag(TEST_TAG_REPORT_WEATHER_DROPDOWN_CLICKABLE_AREA).performClick()
-            onNode(
-                hasText(WeatherType.RAINING_FISH_AND_FROGS.displayName),
-                useUnmergedTree = true
-            ).performClick()
+            performDropdownSelection(WeatherType.RAINING_FISH_AND_FROGS)
             onNodeWithTag(TEST_TAG_REPORT_BUTTON).performClick()
             waitForIdle()
 
             val route = navController.currentBackStackEntry?.destination?.route
             assertTrue(route == AppScreens.Fail.route)
         }
+    }
+
+    private fun performDropdownSelection(weatherType: WeatherType) {
+        composeRule.onNodeWithTag(TEST_TAG_REPORT_WEATHER_DROPDOWN_CLICKABLE_AREA).performClick()
+        composeRule.onNode(
+            hasText(weatherType.displayName),
+            useUnmergedTree = true
+        ).performClick()
     }
 
     private fun launchReportScreenWithNavigation() {
