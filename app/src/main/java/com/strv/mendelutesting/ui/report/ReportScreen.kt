@@ -19,8 +19,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.strv.mendelutesting.R
 
 const val TEST_TAG_REPORT_BUTTON = "report_button"
-val TEST_TAG_REPORT_EMAIL_INPUT = "email_input"
-val TEST_TAG_REPORT_EMAIL_ERROR = "email_error"
+const val TEST_TAG_REPORT_EMAIL_INPUT = "email_input"
+const val TEST_TAG_REPORT_EMAIL_ERROR = "email_error"
 
 @Composable
 fun ReportScreen(
