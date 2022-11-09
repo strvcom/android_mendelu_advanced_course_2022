@@ -24,6 +24,9 @@ const val TEST_TAG_REPORT_BUTTON = "report_button"
 const val TEST_TAG_REPORT_DESCRIPTION_INPUT = "description_input"
 const val TEST_TAG_REPORT_EMAIL_INPUT = "email_input"
 const val TEST_TAG_REPORT_EMAIL_ERROR = "email_error"
+const val TEST_TAG_REPORT_SELECTED_WEATHER_TEXT = "selected_weather_type_text"
+const val TEST_TAG_REPORT_WEATHER_DROPDOWN = "weather_dropdown"
+const val TEST_TAG_REPORT_WEATHER_DROPDOWN_CLICKABLE_AREA = "weather_dropdown_clickable"
 
 @Composable
 fun ReportScreen(
@@ -134,6 +137,7 @@ private fun DropdownWeatherTypes(
                     .align(Alignment.Center)
                     .clickable { expanded = true }
                     .padding(horizontal = 12.dp)
+                    .testTag(TEST_TAG_REPORT_WEATHER_DROPDOWN_CLICKABLE_AREA)
             ) {
                 Text(
                     text = selectedWeatherType?.displayName ?: "No weather?",
@@ -141,6 +145,7 @@ private fun DropdownWeatherTypes(
                         .weight(1f, fill = true)
                         .padding(vertical = 12.dp)
                         .align(Alignment.CenterVertically)
+                        .testTag(TEST_TAG_REPORT_SELECTED_WEATHER_TEXT)
                 )
                 Icon(
                     painter = painterResource(id = dagger.android.support.R.drawable.abc_ic_arrow_drop_right_black_24dp),
@@ -154,7 +159,8 @@ private fun DropdownWeatherTypes(
             DropdownMenu(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .wrapContentHeight(),
+                    .wrapContentHeight()
+                    .testTag(TEST_TAG_REPORT_WEATHER_DROPDOWN),
                 expanded = expanded,
                 onDismissRequest = { expanded = false },
             ) {
@@ -168,7 +174,7 @@ private fun DropdownWeatherTypes(
                             expanded = false
                         },
                     ) {
-                        Box() {
+                        Box {
                             Text(
                                 text = weatherType.weatherType.displayName,
                                 modifier = Modifier.wrapContentWidth()
