@@ -5,6 +5,7 @@ import com.strv.mendelutesting.data.ReportWeatherType
 
 data class ReportUiState(
 	val emailValue: TextFieldValue,
-	val showError: Boolean,
+	val descriptionValue: TextFieldValue,
+	val showErrorEmail: Boolean,
 	val reportWeatherTypes: List<ReportWeatherType>
 )

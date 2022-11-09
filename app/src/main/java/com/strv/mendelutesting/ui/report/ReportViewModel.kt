@@ -18,22 +18,29 @@ class ReportViewModel @Inject constructor() : ViewModel() {
 		MutableStateFlow(
 			ReportUiState(
 				emailValue = TextFieldValue(),
-				showError = false,
+				descriptionValue = TextFieldValue(),
+				showErrorEmail = false,
 				reportWeatherTypes = createReportWeatherTypes()
 			)
 		)
 	val state = _state.asStateFlow()
 
-	fun updateEmailValue(value: TextFieldValue) {
+	fun updateEmail(value: TextFieldValue) {
 		_state.update { uiState ->
 			uiState.copy(
 				emailValue = value,
-				showError = value.text.isValidEmail().not()
+				showErrorEmail = value.text.isValidEmail().not()
 			)
 		}
 	}
 
-	fun changeReportWeatherType(newReportWeatherType: ReportWeatherType) {
+	fun updateDescription(value: TextFieldValue) {
+		_state.update { uiState ->
+			uiState.copy(descriptionValue = value)
+		}
+	}
+
+	fun updateReportWeatherType(newReportWeatherType: ReportWeatherType) {
 		_state.update { uiState ->
 			uiState.copy(
 				reportWeatherTypes = uiState.reportWeatherTypes.map {

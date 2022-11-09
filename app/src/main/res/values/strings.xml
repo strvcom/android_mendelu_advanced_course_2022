@@ -11,10 +11,13 @@
 
     <!--    Report       -->
     <string name="report_title">Report weather</string>
-    <string name="send_report">Send report</string>
-    <string name="invalid_email">Invalid email</string>
-    <string name="enter_email_hint">Enter Email</string>
-    <string name="weather_type">Weather type:</string>
+    <string name="report_send_report_button">Send report</string>
+    <string name="report_enter_email_title">Your email:</string>
+    <string name="report_enter_email_hint">Enter Email</string>
+    <string name="report_enter_email_invalid">Invalid email</string>
+    <string name="report_enter_description_title">Description:</string>
+    <string name="report_enter_description_hint">Winter is coming</string>
+    <string name="report_select_weather_title">Weather type:</string>
 
     <!--    Success       -->
     <string name="success_title">Success</string>

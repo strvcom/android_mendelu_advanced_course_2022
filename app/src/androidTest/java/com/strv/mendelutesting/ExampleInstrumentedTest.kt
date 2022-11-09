@@ -60,7 +60,7 @@ class ExampleInstrumentedTest {
 			// Explain: Why not this?
 			//composeRule.onNodeWithTag(TEST_TAG_REPORT_EMAIL_ERROR, useUnmergedTree = true).assertIsNotDisplayed()
 			onNode(
-				hasText(targetContext.resources.getString(R.string.invalid_email)),
+				hasText(targetContext.resources.getString(R.string.report_enter_email_invalid)),
 				// TODO find out what is this for: useUnmergedTree = true
 			).assertDoesNotExist()
 		}
@@ -74,7 +74,7 @@ class ExampleInstrumentedTest {
 			onNodeWithTag(TEST_TAG_REPORT_EMAIL_INPUT)
 				.performTextInput("t@em@a@il.c@#@om")
 			onNode(
-				hasText(targetContext.resources.getString(R.string.invalid_email)),
+				hasText(targetContext.resources.getString(R.string.report_enter_email_invalid)),
 				useUnmergedTree = true
 			).assertExists()
 		}
