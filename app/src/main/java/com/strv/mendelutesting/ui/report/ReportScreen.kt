@@ -76,7 +76,7 @@ fun ReportScreen(
 						.padding(horizontal = 12.dp)
 				) {
 					Text(
-						text = state.reportWeatherTypes.firstOrNull { it.selected }?.weatherConditionName
+						text = state.reportWeatherTypes.firstOrNull { it.isSelected }?.weatherType?.displayName
 							?: "No weather?",
 						modifier = Modifier
 							.weight(1f, fill = true)
@@ -105,13 +105,13 @@ fun ReportScreen(
 								.fillMaxWidth()
 								.padding(horizontal = 12.dp),
 							onClick = {
-								viewModel.selectWeatherType(weatherType)
+								viewModel.changeReportWeatherType(weatherType)
 								expanded = false
 							},
 						) {
 							Box() {
 								Text(
-									text = weatherType.weatherConditionName,
+									text = weatherType.weatherType.displayName,
 									modifier = Modifier.wrapContentWidth()
 								)
 							}

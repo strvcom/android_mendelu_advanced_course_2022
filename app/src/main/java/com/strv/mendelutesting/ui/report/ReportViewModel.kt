@@ -3,6 +3,7 @@ package com.strv.mendelutesting.ui.report
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.lifecycle.ViewModel
 import com.strv.mendelutesting.data.ReportWeatherType
+import com.strv.mendelutesting.data.WeatherType
 import com.strv.mendelutesting.extension.isValidEmail
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -24,31 +25,40 @@ class ReportViewModel @Inject constructor() : ViewModel() {
 	val state = _state.asStateFlow()
 
 	fun updateEmailValue(value: TextFieldValue) {
-		_state.update {
-			it.copy(emailValue = value, showError = value.text.isValidEmail().not())
+		_state.update { uiState ->
+			uiState.copy(
+				emailValue = value,
+				showError = value.text.isValidEmail().not()
+			)
 		}
 	}
 
-	fun selectWeatherType(weatherType: ReportWeatherType) {
-		_state.update {
-			it.copy(reportWeatherTypes = it.reportWeatherTypes.map {
-				it.copy(selected = it.id == weatherType.id)
-			})
+	fun changeReportWeatherType(newReportWeatherType: ReportWeatherType) {
+		_state.update { uiState ->
+			uiState.copy(
+				reportWeatherTypes = uiState.reportWeatherTypes.map {
+					it.copy(
+						isSelected = it.weatherType == newReportWeatherType.weatherType,
+						weatherType = it.weatherType
+					)
+				}
+			)
 		}
 	}
 
 	fun sendReport() {
-		// TODO add some actual repository which might need to be mocked?
+		//	TODO - evaluate if button is enabled or not
 	}
 
 	private fun createReportWeatherTypes(): List<ReportWeatherType> {
 		return listOf(
-			ReportWeatherType(0, false, "Sunny"),
-			ReportWeatherType(1, true, "Overcast"),
-			ReportWeatherType(2, false, "Raining"),
-			ReportWeatherType(3, false, "Storm"),
-			ReportWeatherType(4, false, "Snowing"),
-			ReportWeatherType(5, false, "Raining fish&frogs")
+			ReportWeatherType(isSelected = true, weatherType = WeatherType.NOT_SELECTED),
+			ReportWeatherType(isSelected = false, weatherType = WeatherType.SUNNY),
+			ReportWeatherType(isSelected = false, weatherType = WeatherType.OVERCAST),
+			ReportWeatherType(isSelected = false, weatherType = WeatherType.RAINING),
+			ReportWeatherType(isSelected = false, weatherType = WeatherType.STORM),
+			ReportWeatherType(isSelected = false, weatherType = WeatherType.SNOWING),
+			ReportWeatherType(isSelected = false, weatherType = WeatherType.RAINING_FISH_FROGS)
 		)
 	}
 }
