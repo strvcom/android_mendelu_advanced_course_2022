@@ -36,7 +36,7 @@ import org.junit.runners.MethodSorters
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 class ExampleInstrumentedTest {
 
-	val targetContext: Context = InstrumentationRegistry.getInstrumentation().targetContext
+	private val targetContext: Context = InstrumentationRegistry.getInstrumentation().targetContext
 
     private lateinit var navController: NavHostController
 
@@ -110,7 +110,8 @@ class ExampleInstrumentedTest {
 			MaterialTheme {
 				ReportScreen(
 					viewModel = reportViewModel, // Explain: this line can be deleted
-					onSendReportClick = {}
+					navigateToSuccessScreen = {},
+					navigateToFailScreen = {},
 				)
 			}
 		}

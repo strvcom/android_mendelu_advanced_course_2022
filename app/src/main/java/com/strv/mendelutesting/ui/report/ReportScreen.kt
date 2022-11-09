@@ -34,12 +34,12 @@ fun ReportScreen(
     val state by viewModel.state.collectAsState()
 
     LaunchedEffect(state.validation) {
-        viewModel.clearNavigationFlags()
         when (state.validation) {
             true -> navigateToSuccessScreen()
             false -> navigateToFailScreen()
             else -> Unit
         }
+        viewModel.clearNavigationFlags()
     }
 
     Surface(
