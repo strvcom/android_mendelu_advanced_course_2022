@@ -28,9 +28,19 @@ const val TEST_TAG_REPORT_EMAIL_ERROR = "email_error"
 @Composable
 fun ReportScreen(
     viewModel: ReportViewModel = hiltViewModel(),
-    onSendReportClick: () -> Unit
+    navigateToSuccessScreen: () -> Unit,
+    navigateToFailScreen: () -> Unit
 ) {
     val state by viewModel.state.collectAsState()
+
+    LaunchedEffect(state.validation) {
+        viewModel.clearNavigationFlags()
+        when (state.validation) {
+            true -> navigateToSuccessScreen()
+            false -> navigateToFailScreen()
+            else -> Unit
+        }
+    }
 
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -205,5 +215,5 @@ private fun ButtonSendReport(onSendReportClick: () -> Unit) {
 @Preview
 @Composable
 private fun ReportScreenPreview() {
-    ReportScreen(onSendReportClick = {})
+    ReportScreen(navigateToFailScreen = {}, navigateToSuccessScreen = {})
 }

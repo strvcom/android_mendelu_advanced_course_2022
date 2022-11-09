@@ -20,7 +20,8 @@ class ReportViewModel @Inject constructor() : ViewModel() {
 				emailValue = TextFieldValue(),
 				descriptionValue = TextFieldValue(),
 				showErrorEmail = false,
-				reportWeatherTypes = createReportWeatherTypes()
+				reportWeatherTypes = createReportWeatherTypes(),
+				validation = null
 			)
 		)
 	val state = _state.asStateFlow()
@@ -55,6 +56,23 @@ class ReportViewModel @Inject constructor() : ViewModel() {
 
 	fun sendReport() {
 		//	TODO - evaluate if button is enabled or not
+		val state = _state.value
+		val selectedWeatherType = state.reportWeatherTypes.firstOrNull { it.isSelected }?.weatherType
+
+		val isValid = when (selectedWeatherType) {
+			WeatherType.RAINING_FISH_FROGS ->  false
+			else -> true
+		}
+
+		_state.update { uiState ->
+			uiState.copy(validation = isValid)
+		}
+	}
+
+	fun clearNavigationFlags() {
+		_state.update { uiState ->
+			uiState.copy(validation = null)
+		}
 	}
 
 	private fun createReportWeatherTypes(): List<ReportWeatherType> {

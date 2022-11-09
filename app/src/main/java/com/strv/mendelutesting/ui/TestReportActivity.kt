@@ -13,7 +13,8 @@ class TestReportActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ReportScreen(
-                onSendReportClick = {}
+                navigateToSuccessScreen = {},
+                navigateToFailScreen = {}
             )
         }
     }
