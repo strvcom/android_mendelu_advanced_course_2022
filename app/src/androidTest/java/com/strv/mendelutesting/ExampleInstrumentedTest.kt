@@ -4,9 +4,9 @@ import android.content.Context
 import androidx.activity.viewModels
 import androidx.compose.material.MaterialTheme
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
-import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
 import androidx.test.platform.app.InstrumentationRegistry
 import com.strv.mendelutesting.ui.MainActivity
@@ -33,44 +33,61 @@ import org.junit.runners.MethodSorters
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 class ExampleInstrumentedTest {
 
-    // TODO keep but remove later?
-    val targetContext: Context = InstrumentationRegistry.getInstrumentation().targetContext
+	val targetContext: Context = InstrumentationRegistry.getInstrumentation().targetContext
 
-    @get:Rule(order = 0)
-    val hiltRule = HiltAndroidRule(this)
+	@get:Rule(order = 0)
+	val hiltRule = HiltAndroidRule(this)
 
-    @get:Rule(order = 1)
-    val composeRule = createAndroidComposeRule<MainActivity>() // TestReportActivity
+	@get:Rule(order = 1)
+	val composeRule = createAndroidComposeRule<MainActivity>() // TestReportActivity
 
-    @Before
-    fun setUp() {
-        hiltRule.inject()
-    }
+	@Before
+	fun setUp() {
+		hiltRule.inject()
+	}
 
-    // TODO add navigation etc.
+	@Test
+	fun test_report_email_valid() {
+		launchReportScreen()
+		with(composeRule) {
+			onNodeWithTag(TEST_TAG_REPORT_EMAIL_INPUT).assertIsDisplayed()
+			onNodeWithTag(TEST_TAG_REPORT_EMAIL_INPUT).performTextInput("test@email.com")
+			// Explain: Why not this?
+			//composeRule.onNodeWithTag(TEST_TAG_REPORT_EMAIL_ERROR, useUnmergedTree = true).assertIsNotDisplayed()
+			onNode(
+				hasText(targetContext.resources.getString(R.string.invalid_email)),
+				// TODO find out what is this for: useUnmergedTree = true
+			).assertDoesNotExist()
+		}
+	}
 
+	@Test
+	fun test_report_email_invalid() {
+		launchReportScreen()
+		with(composeRule) {
+			onNodeWithTag(TEST_TAG_REPORT_EMAIL_INPUT).assertIsDisplayed()
+			onNodeWithTag(TEST_TAG_REPORT_EMAIL_INPUT)
+				.performTextInput("t@em@a@il.c@#@om")
+			onNode(
+				hasText(targetContext.resources.getString(R.string.invalid_email)),
+				useUnmergedTree = true
+			).assertExists()
+		}
+	}
 
-    @Test
-    fun test_report_email_isVisible() {
-        launchReportScreen()
-        composeRule.onNodeWithTag(TEST_TAG_REPORT_EMAIL_INPUT).assertIsDisplayed()
-        composeRule.onNodeWithTag(TEST_TAG_REPORT_EMAIL_INPUT).performTextInput("test@email.com")
-        composeRule.onNodeWithTag(TEST_TAG_REPORT_EMAIL_INPUT).performClick()
-    }
+	private fun launchReportScreen() {
+		composeRule.setContent {
+			val reportViewModel = initReportViewModel() // inaccessible by design
+			MaterialTheme {
+				ReportScreen(
+					viewModel = reportViewModel,
+					onSendReportClick = {}
+				)
+			}
+		}
+	}
 
-    private fun launchReportScreen() {
-        composeRule.setContent {
-            val reportViewModel = initReportViewModel() // TODO keep this or initReportViewModel
-            MaterialTheme {
-                ReportScreen(
-                    viewModel = reportViewModel,
-                    onSendReportClick = {}
-                )
-            }
-        }
-    }
-
-    private fun initReportViewModel(): ReportViewModel {
-        return  composeRule.activity.viewModels<ReportViewModel>().value
-    }
+	private fun initReportViewModel(): ReportViewModel {
+		return composeRule.activity.viewModels<ReportViewModel>().value
+	}
 }

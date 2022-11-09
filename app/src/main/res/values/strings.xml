@@ -14,7 +14,7 @@
     <string name="send_report">Send report</string>
     <string name="invalid_email">Invalid email</string>
     <string name="enter_email_hint">Enter Email</string>
-
+    <string name="weather_type">Weather type:</string>
 
     <!--    Success       -->
     <string name="success_title">Success</string>

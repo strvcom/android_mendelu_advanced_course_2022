@@ -19,6 +19,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.strv.mendelutesting.R
 
 val TEST_TAG_REPORT_EMAIL_INPUT = "email_input"
+val TEST_TAG_REPORT_EMAIL_ERROR = "email_error"
 
 @Composable
 fun ReportScreen(
@@ -53,15 +54,14 @@ fun ReportScreen(
 				enter = fadeIn(),
 				exit = fadeOut()
 			) {
-				Box {
-					Text(
-						text = stringResource(id = R.string.invalid_email),
-						color = MaterialTheme.colors.error
-					)
-				}
+				Text(
+					text = stringResource(id = R.string.invalid_email),
+					color = MaterialTheme.colors.error,
+					modifier = Modifier.testTag(TEST_TAG_REPORT_EMAIL_ERROR)
+				)
 			}
 			Text(
-				text = "Weather type:",
+				text = stringResource(R.string.weather_type),
 				style = MaterialTheme.typography.h5,
 				modifier = Modifier
 					.fillMaxWidth()
