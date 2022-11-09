@@ -1,4 +1,4 @@
-package com.strv.mendelutesting.ui.fail
+package com.strv.mendelutesting.ui.validation
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*

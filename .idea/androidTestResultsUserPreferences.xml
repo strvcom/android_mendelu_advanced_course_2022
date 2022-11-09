@@ -40,6 +40,7 @@
                   <entry key="Duration" value="90" />
                   <entry key="Google&#10; Pixel 6" value="120" />
                   <entry key="Tests" value="360" />
+                  <entry key="adb-19121FDF600149-cXRLCX._adb-tls-connect._tcp." value="120" />
                 </map>
               </option>
             </AndroidTestResultsTableState>

@@ -2,16 +2,14 @@ package com.strv.mendelutesting.logic.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.strv.mendelutesting.ui.dashboard.DashboardScreen
-import com.strv.mendelutesting.ui.dashboard.DashboardViewModel
-import com.strv.mendelutesting.ui.fail.FailScreen
+import com.strv.mendelutesting.ui.validation.FailScreen
 import com.strv.mendelutesting.ui.report.ReportScreen
-import com.strv.mendelutesting.ui.success.SuccessScreen
+import com.strv.mendelutesting.ui.validation.SuccessScreen
 
 @Composable
 fun Navigation(

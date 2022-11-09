@@ -13,8 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.strv.mendelutesting.R
-import com.strv.mendelutesting.ui.dashboard.components.TemperatureUnitsSelection
-import com.strv.mendelutesting.ui.dashboard.components.WeatherInfo
+import com.strv.mendelutesting.ui.dashboard.components.*
 
 @Composable
 fun DashboardScreen(
@@ -32,26 +31,36 @@ fun DashboardScreen(
                 .fillMaxWidth()
                 .padding(16.dp)
                 .verticalScroll(rememberScrollState()),
-            verticalArrangement = Arrangement.spacedBy(24.dp)
+            verticalArrangement = Arrangement.spacedBy(32.dp)
         ) {
-            WeatherInfo(
-                currentWeather = uiState.currentWeather,
-                temperatureUnit = uiState.temperatureUnit
-            )
+            WeatherStates(uiState = uiState)
             Divider()
-            TemperatureUnitsSelection(
+            RadioGroupTemperatureUnits(
                 selectedUnit = uiState.temperatureUnit,
                 onUnitChange = viewModel::onTemperatureUnitChange
             )
-            Divider()
             Spacer(modifier = Modifier.weight(1f))
-            ReportWeather(onReportClick = onReportClick)
+            ButtonReportWeather(onReportClick = onReportClick)
         }
     }
 }
 
 @Composable
-private fun ReportWeather(onReportClick: () -> Unit) {
+fun WeatherStates(uiState: DashboardUiState) {
+    when {
+        uiState.isLoading -> WeatherLoading()
+        uiState.currentWeather == null -> WeatherError()
+        else -> {
+            WeatherContent(
+                currentWeather = uiState.currentWeather,
+                temperatureUnit = uiState.temperatureUnit
+            )
+        }
+    }
+}
+
+@Composable
+private fun ButtonReportWeather(onReportClick: () -> Unit) {
     Button(
         modifier = Modifier.fillMaxWidth(),
         onClick = onReportClick

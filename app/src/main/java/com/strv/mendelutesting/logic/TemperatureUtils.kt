@@ -32,7 +32,6 @@ enum class TemperatureUnitsEnum(
         }
 
         fun convertCelsiusToFahrenheit(celsius: Double): Double {
-            //  TODO - some link?
             return (celsius * 9 / 5.0) + 32.0
         }
     }

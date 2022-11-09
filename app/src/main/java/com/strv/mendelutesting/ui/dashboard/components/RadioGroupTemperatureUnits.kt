@@ -17,7 +17,7 @@ import com.strv.mendelutesting.R
 import com.strv.mendelutesting.logic.TemperatureUnitsEnum
 
 @Composable
-fun TemperatureUnitsSelection(
+fun RadioGroupTemperatureUnits(
     selectedUnit: TemperatureUnitsEnum,
     onUnitChange: (TemperatureUnitsEnum) -> Unit
 ) {
@@ -26,7 +26,10 @@ fun TemperatureUnitsSelection(
             text = stringResource(id = R.string.dashboard_temperature_units).uppercase(),
             style = MaterialTheme.typography.subtitle1.copy(fontWeight = FontWeight.Bold)
         )
+
         Spacer(modifier = Modifier.size(8.dp))
+
+        //  Radio buttons
         TemperatureUnitsEnum.values().forEach { unit ->
             TemperatureUnitRadioButton(
                 unit = unit,
@@ -69,7 +72,7 @@ private fun TemperatureUnitRadioButton(
 @Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
 @Composable
 private fun TemperatureUnitsSelection_Preview() {
-    TemperatureUnitsSelection(
+    RadioGroupTemperatureUnits(
         selectedUnit = TemperatureUnitsEnum.CELSIUS,
         onUnitChange = {}
     )
