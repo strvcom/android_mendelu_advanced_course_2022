@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Mendelu Testing</string>
     <string name="close">Close</string>
+    <string name="try_again">Try again</string>
 
     <!--    Dashboard     -->
     <string name="dashboard_title">Dashboard</string>
@@ -24,7 +25,7 @@
     <string name="success_icon_success_description">Icon of success</string>
 
     <!--    Fail       -->
-    <string name="fail_title">Fail</string>
+    <string name="fail_title">C\'mon, fish &amp; frogs?</string>
     <string name="fail_icon_fail_description">Icon of error</string>
 
     <!--    Wind direction     -->

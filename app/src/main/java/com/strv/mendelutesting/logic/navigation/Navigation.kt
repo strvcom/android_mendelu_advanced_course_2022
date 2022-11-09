@@ -25,7 +25,9 @@ fun Navigation(
         startDestination = startDestination
     ) {
         composable(AppScreens.Dashboard.route) {
-            DashboardScreen(onReportClick = { navController.navigate(AppScreens.Report.route) })
+            DashboardScreen(
+                onReportClick = { navController.navigate(AppScreens.Report.route) }
+            )
         }
 
         composable(AppScreens.Report.route) {
@@ -36,11 +38,20 @@ fun Navigation(
         }
 
         composable(AppScreens.Success.route) {
-            SuccessScreen(onCloseClick = { navController.popBackStack() })
+            SuccessScreen(
+                onCloseClick = {
+                    navController.popBackStack(
+                        route = AppScreens.Dashboard.route,
+                        inclusive = false
+                    )
+                }
+            )
         }
 
         composable(AppScreens.Fail.route) {
-            FailScreen(onCloseClick = { navController.popBackStack() })
+            FailScreen(
+                onTryAgainClick = { navController.popBackStack() }
+            )
         }
     }
 }

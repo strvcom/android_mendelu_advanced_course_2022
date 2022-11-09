@@ -12,14 +12,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.strv.mendelutesting.R
-import com.strv.mendelutesting.ui.components.CloseButton
 
 const val TEST_TAG_FAIL_CONTENT = "content_success"
 const val TEST_TAG_FAIL_ICON = "icon_success"
 const val TEST_TAG_FAIL_TEXT = "text_success"
 
 @Composable
-fun FailScreen(onCloseClick: () -> Unit) {
+fun FailScreen(onTryAgainClick: () -> Unit) {
     Surface(
         modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background
     ) {
@@ -35,7 +34,7 @@ fun FailScreen(onCloseClick: () -> Unit) {
             ) {
                 ContentSuccess()
             }
-            CloseButton(onClick = onCloseClick)
+            TryAgainButton(onClick = onTryAgainClick)
         }
     }
 }
@@ -64,8 +63,18 @@ private fun BoxScope.ContentSuccess() {
     }
 }
 
+@Composable
+fun TryAgainButton(onClick: () -> Unit) {
+    Button(
+        modifier = Modifier.fillMaxWidth(),
+        onClick = onClick
+    ) {
+        Text(text = stringResource(R.string.try_again))
+    }
+}
+
 @Preview
 @Composable
 private fun SuccessScreen_Preview() {
-    FailScreen(onCloseClick = {})
+    FailScreen(onTryAgainClick = {})
 }

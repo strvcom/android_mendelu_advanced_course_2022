@@ -12,7 +12,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.strv.mendelutesting.R
-import com.strv.mendelutesting.ui.components.CloseButton
 
 const val TEST_TAG_SUCCESS_CONTENT = "content_success"
 const val TEST_TAG_SUCCESS_ICON = "icon_success"
@@ -61,6 +60,16 @@ private fun BoxScope.ContentSuccess() {
             text = stringResource(id = R.string.success_title),
             style = MaterialTheme.typography.h5
         )
+    }
+}
+
+@Composable
+fun CloseButton(onClick: () -> Unit) {
+    Button(
+        modifier = Modifier.fillMaxWidth(),
+        onClick = onClick
+    ) {
+        Text(text = stringResource(R.string.close))
     }
 }
 
