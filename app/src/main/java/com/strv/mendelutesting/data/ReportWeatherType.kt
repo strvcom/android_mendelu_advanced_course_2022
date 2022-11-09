@@ -7,7 +7,7 @@ enum class WeatherType(val displayName: String) {
 	RAINING("Raining"),
 	STORM("Storm"),
 	SNOWING("Snowing"),
-	RAINING_FISH_FROGS("Raining fish & frogs")
+	RAINING_FISH_AND_FROGS("Raining fish & frogs")
 }
 
 data class ReportWeatherType(

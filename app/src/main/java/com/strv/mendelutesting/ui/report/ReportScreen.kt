@@ -31,15 +31,15 @@ fun ReportScreen(
     navigateToSuccessScreen: () -> Unit,
     navigateToFailScreen: () -> Unit
 ) {
-    val state by viewModel.state.collectAsState()
+    val uiState by viewModel.state.collectAsState()
 
-    LaunchedEffect(state.validation) {
-        when (state.validation) {
+    LaunchedEffect(uiState.validation) {
+        when (uiState.validation) {
             true -> navigateToSuccessScreen()
             false -> navigateToFailScreen()
             else -> Unit
         }
-        viewModel.clearNavigationFlags()
+        viewModel.clearValidation()
     }
 
     Surface(
@@ -53,20 +53,23 @@ fun ReportScreen(
             verticalArrangement = Arrangement.spacedBy(32.dp)
         ) {
             InputEmail(
-                email = state.emailValue,
-                showError = state.showErrorEmail,
+                email = uiState.emailValue,
+                showError = uiState.showErrorEmail,
                 updateEmail = viewModel::updateEmail
             )
             DropdownWeatherTypes(
-                reportWeatherTypes = state.reportWeatherTypes,
+                reportWeatherTypes = uiState.reportWeatherTypes,
                 updateReportWeatherType = viewModel::updateReportWeatherType
             )
             InputDescription(
-                description = state.descriptionValue,
+                description = uiState.descriptionValue,
                 updateDescription = viewModel::updateDescription
             )
             Spacer(modifier = Modifier.weight(weight = 1f, fill = true))
-            ButtonSendReport(onSendReportClick = viewModel::sendReport)
+            ButtonSendReport(
+                enabled = uiState.sendReportButtonEnabled,
+                onSendReportClick = viewModel::sendReport
+            )
         }
     }
 }
@@ -206,11 +209,15 @@ private fun InputDescription(
 
 
 @Composable
-private fun ButtonSendReport(onSendReportClick: () -> Unit) {
+private fun ButtonSendReport(
+    enabled: Boolean,
+    onSendReportClick: () -> Unit
+) {
     Button(
         modifier = Modifier
             .fillMaxWidth()
             .testTag(TEST_TAG_REPORT_BUTTON),
+        enabled = enabled,
         onClick = onSendReportClick
     ) {
         Text(text = stringResource(id = R.string.report_send_report_button))

@@ -55,12 +55,8 @@ class ReportViewModel @Inject constructor() : ViewModel() {
 	}
 
 	fun sendReport() {
-		//	TODO - evaluate if button is enabled or not
-		val state = _state.value
-		val selectedWeatherType = state.reportWeatherTypes.firstOrNull { it.isSelected }?.weatherType
-
-		val isValid = when (selectedWeatherType) {
-			WeatherType.RAINING_FISH_FROGS ->  false
+		val isValid = when (_state.value.getSelectedWeatherType()) {
+			WeatherType.RAINING_FISH_AND_FROGS ->  false
 			else -> true
 		}
 
@@ -69,7 +65,7 @@ class ReportViewModel @Inject constructor() : ViewModel() {
 		}
 	}
 
-	fun clearNavigationFlags() {
+	fun clearValidation() {
 		_state.update { uiState ->
 			uiState.copy(validation = null)
 		}
@@ -83,7 +79,7 @@ class ReportViewModel @Inject constructor() : ViewModel() {
 			ReportWeatherType(isSelected = false, weatherType = WeatherType.RAINING),
 			ReportWeatherType(isSelected = false, weatherType = WeatherType.STORM),
 			ReportWeatherType(isSelected = false, weatherType = WeatherType.SNOWING),
-			ReportWeatherType(isSelected = false, weatherType = WeatherType.RAINING_FISH_FROGS)
+			ReportWeatherType(isSelected = false, weatherType = WeatherType.RAINING_FISH_AND_FROGS)
 		)
 	}
 }
