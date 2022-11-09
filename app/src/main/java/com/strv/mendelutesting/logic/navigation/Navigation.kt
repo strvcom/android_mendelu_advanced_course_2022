@@ -29,7 +29,7 @@ fun Navigation(
         }
 
         composable(AppScreens.Report.route) {
-            ReportScreen(onSendReportClick = { navController.navigate(AppScreens.Fail.route) })
+            ReportScreen(onSendReportClick = { navController.navigate(AppScreens.Success.route) })
         }
 
         composable(AppScreens.Success.route) {
