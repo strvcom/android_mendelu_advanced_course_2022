@@ -49,128 +49,24 @@ class UITests {
         hiltRule.inject()
     }
 
-    // Priority to do: High
+    // Example UI test that composable is displayed
     @Test
-    fun test_report_email_valid() {
+    fun example_test() {
         launchReportScreen()
         with(composeRule) {
             onNodeWithTag(TEST_TAG_REPORT_EMAIL_INPUT).assertIsDisplayed()
-            onNodeWithTag(TEST_TAG_REPORT_EMAIL_INPUT).performTextInput("test@email.com")
-
-            // Explain: Why not this?
-            //composeRule.onNodeWithTag(TEST_TAG_REPORT_EMAIL_ERROR, useUnmergedTree = true).assertIsNotDisplayed()
-            onNode(
-                hasText(targetContext.resources.getString(R.string.report_enter_email_invalid)),
-            ).assertDoesNotExist()
         }
     }
 
-    // Priority to do: Medium
-    @Test
-    fun test_report_email_invalid() {
-        launchReportScreen()
-        with(composeRule) {
-            onNodeWithTag(TEST_TAG_REPORT_EMAIL_INPUT).assertIsDisplayed()
-            onNodeWithTag(TEST_TAG_REPORT_EMAIL_INPUT).performTextInput("t@em@a@il.c@#@m")
+    /**
+     *
+     *
+     *  TODO - More UI tests coming soon...
+     *
+     *
+     * */
 
-            onNode(
-                hasText(targetContext.resources.getString(R.string.report_enter_email_invalid))
-            ).assertExists()
-        }
-    }
-
-    // Priority to do: Low
-    @Test
-    fun test_report_screen_dropdown_visible() {
-        launchReportScreen()
-        with(composeRule) {
-            onNodeWithTag(TEST_TAG_REPORT_WEATHER_DROPDOWN_CLICKABLE_AREA).performClick()
-
-            onNodeWithTag(TEST_TAG_REPORT_WEATHER_DROPDOWN).assertIsDisplayed()
-        }
-    }
-
-    // Priority to do: Medium
-    @Test
-    fun test_report_screen_dropdown_changes_text() {
-        launchReportScreen()
-        with(composeRule) {
-            performDropdownSelection(WeatherType.SNOWING) // We call some method which is reused in more tests
-
-            onNode(
-                hasText(WeatherType.SNOWING.displayName)
-            ).assertIsDisplayed()
-        }
-    }
-
-    // Priority to do: Medium
-    @Test
-    fun test_report_screen_button_disabled() {
-        launchReportScreen()
-        with(composeRule) {
-            onNodeWithTag(TEST_TAG_REPORT_EMAIL_INPUT).assertIsDisplayed()
-            onNodeWithTag(TEST_TAG_REPORT_EMAIL_INPUT).performTextInput("valid@email.com")
-            onNodeWithTag(TEST_TAG_REPORT_DESCRIPTION_INPUT).performTextInput("some description")
-
-            onNodeWithTag(TEST_TAG_REPORT_BUTTON).assertIsNotEnabled()
-        }
-    }
-
-    // Priority to do: High
-    @Test
-    fun test_report_screen_button_enabled() {
-        launchReportScreen()
-        with(composeRule) {
-            onNodeWithTag(TEST_TAG_REPORT_EMAIL_INPUT).assertIsDisplayed()
-            onNodeWithTag(TEST_TAG_REPORT_EMAIL_INPUT).performTextInput("valid@email.com")
-            onNodeWithTag(TEST_TAG_REPORT_DESCRIPTION_INPUT).performTextInput("some description")
-            performDropdownSelection(WeatherType.STORM)
-
-            onNodeWithTag(TEST_TAG_REPORT_BUTTON).assertIsEnabled()
-        }
-    }
-
-    // Priority to do: High
-    @Test
-    fun test_report_screen_navigates_to_success_screen() {
-        launchReportScreenWithNavigation()
-        with(composeRule) {
-            onNodeWithTag(TEST_TAG_REPORT_EMAIL_INPUT).assertIsDisplayed()
-            onNodeWithTag(TEST_TAG_REPORT_EMAIL_INPUT).performTextInput("valid@email.com")
-            onNodeWithTag(TEST_TAG_REPORT_DESCRIPTION_INPUT).performTextInput("some description")
-            performDropdownSelection(WeatherType.STORM)
-            onNodeWithTag(TEST_TAG_REPORT_BUTTON).performClick() // This navigates us to success screen
-            waitForIdle()
-
-            val route = navController.currentBackStackEntry?.destination?.route
-            assertTrue(route == AppScreens.Success.route)
-        }
-    }
-
-    // Priority to do: Medium
-    @Test
-    fun test_report_screen_navigates_to_fail_screen() {
-        launchReportScreenWithNavigation()
-        with(composeRule) {
-            onNodeWithTag(TEST_TAG_REPORT_EMAIL_INPUT).assertIsDisplayed()
-            onNodeWithTag(TEST_TAG_REPORT_EMAIL_INPUT).performTextInput("valid@email.com")
-            onNodeWithTag(TEST_TAG_REPORT_DESCRIPTION_INPUT).performTextInput("some description")
-            performDropdownSelection(WeatherType.RAINING_FISH_AND_FROGS)
-            onNodeWithTag(TEST_TAG_REPORT_BUTTON).performClick() // This navigates us to success screen
-            waitForIdle()
-
-            val route = navController.currentBackStackEntry?.destination?.route
-            assertTrue(route == AppScreens.Fail.route)
-        }
-    }
-
-    private fun performDropdownSelection(weatherType: WeatherType) {
-        composeRule.onNodeWithTag(TEST_TAG_REPORT_WEATHER_DROPDOWN_CLICKABLE_AREA).performClick()
-        composeRule.onNode(
-            hasText(weatherType.displayName)
-        ).performClick()
-    }
-
+    //  Launch Report screen through Navigation
     private fun launchReportScreenWithNavigation() {
         composeRule.setContent {
             MaterialTheme {
@@ -183,6 +79,7 @@ class UITests {
         }
     }
 
+    //  Launch only Report screen
     private fun launchReportScreen() {
         composeRule.setContent {
             val reportViewModel = initReportViewModel() // Explain: inaccessible by design
