@@ -32,7 +32,7 @@ import org.junit.runners.MethodSorters
 @ExperimentalCoroutinesApi
 @HiltAndroidTest
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-class ExampleInstrumentedTest {
+class UITests {
 
     private val targetContext: Context = InstrumentationRegistry.getInstrumentation().targetContext
 
@@ -42,13 +42,14 @@ class ExampleInstrumentedTest {
     val hiltRule = HiltAndroidRule(this)
 
     @get:Rule(order = 1)
-    val composeRule = createAndroidComposeRule<MainActivity>() // TestReportActivity
+    val composeRule = createAndroidComposeRule<MainActivity>()
 
     @Before
     fun setUp() {
         hiltRule.inject()
     }
 
+    // Priority to do: High
     @Test
     fun test_report_email_valid() {
         launchReportScreen()
@@ -60,11 +61,11 @@ class ExampleInstrumentedTest {
             //composeRule.onNodeWithTag(TEST_TAG_REPORT_EMAIL_ERROR, useUnmergedTree = true).assertIsNotDisplayed()
             onNode(
                 hasText(targetContext.resources.getString(R.string.report_enter_email_invalid)),
-                // TODO find out what is this for: useUnmergedTree = true
             ).assertDoesNotExist()
         }
     }
 
+    // Priority to do: Medium
     @Test
     fun test_report_email_invalid() {
         launchReportScreen()
@@ -73,44 +74,39 @@ class ExampleInstrumentedTest {
             onNodeWithTag(TEST_TAG_REPORT_EMAIL_INPUT).performTextInput("t@em@a@il.c@#@m")
 
             onNode(
-                hasText(targetContext.resources.getString(R.string.report_enter_email_invalid)),
-                useUnmergedTree = true
+                hasText(targetContext.resources.getString(R.string.report_enter_email_invalid))
             ).assertExists()
         }
     }
 
+    // Priority to do: Low
     @Test
     fun test_report_screen_dropdown_visible() {
-        launchReportScreenWithNavigation()
+        launchReportScreen()
         with(composeRule) {
-            onNodeWithTag(TEST_TAG_REPORT_EMAIL_INPUT).assertIsDisplayed()
-            onNodeWithTag(TEST_TAG_REPORT_EMAIL_INPUT).performTextInput("valid@email.com")
-            onNodeWithTag(TEST_TAG_REPORT_DESCRIPTION_INPUT).performTextInput("some description")
             onNodeWithTag(TEST_TAG_REPORT_WEATHER_DROPDOWN_CLICKABLE_AREA).performClick()
 
             onNodeWithTag(TEST_TAG_REPORT_WEATHER_DROPDOWN).assertIsDisplayed()
         }
     }
 
+    // Priority to do: Medium
     @Test
     fun test_report_screen_dropdown_changes_text() {
-        launchReportScreenWithNavigation()
+        launchReportScreen()
         with(composeRule) {
-            onNodeWithTag(TEST_TAG_REPORT_EMAIL_INPUT).assertIsDisplayed()
-            onNodeWithTag(TEST_TAG_REPORT_EMAIL_INPUT).performTextInput("valid@email.com")
-            onNodeWithTag(TEST_TAG_REPORT_DESCRIPTION_INPUT).performTextInput("some description")
-            performDropdownSelection(WeatherType.SNOWING)
+            performDropdownSelection(WeatherType.SNOWING) // We call some method which is reused in more tests
 
             onNode(
-                hasText(WeatherType.SNOWING.displayName),
-                useUnmergedTree = true
+                hasText(WeatherType.SNOWING.displayName)
             ).assertIsDisplayed()
         }
     }
 
+    // Priority to do: Medium
     @Test
     fun test_report_screen_button_disabled() {
-        launchReportScreenWithNavigation()
+        launchReportScreen()
         with(composeRule) {
             onNodeWithTag(TEST_TAG_REPORT_EMAIL_INPUT).assertIsDisplayed()
             onNodeWithTag(TEST_TAG_REPORT_EMAIL_INPUT).performTextInput("valid@email.com")
@@ -120,9 +116,10 @@ class ExampleInstrumentedTest {
         }
     }
 
+    // Priority to do: High
     @Test
     fun test_report_screen_button_enabled() {
-        launchReportScreenWithNavigation()
+        launchReportScreen()
         with(composeRule) {
             onNodeWithTag(TEST_TAG_REPORT_EMAIL_INPUT).assertIsDisplayed()
             onNodeWithTag(TEST_TAG_REPORT_EMAIL_INPUT).performTextInput("valid@email.com")
@@ -133,6 +130,7 @@ class ExampleInstrumentedTest {
         }
     }
 
+    // Priority to do: High
     @Test
     fun test_report_screen_navigates_to_success_screen() {
         launchReportScreenWithNavigation()
@@ -141,7 +139,7 @@ class ExampleInstrumentedTest {
             onNodeWithTag(TEST_TAG_REPORT_EMAIL_INPUT).performTextInput("valid@email.com")
             onNodeWithTag(TEST_TAG_REPORT_DESCRIPTION_INPUT).performTextInput("some description")
             performDropdownSelection(WeatherType.STORM)
-            onNodeWithTag(TEST_TAG_REPORT_BUTTON).performClick()
+            onNodeWithTag(TEST_TAG_REPORT_BUTTON).performClick() // This navigates us to success screen
             waitForIdle()
 
             val route = navController.currentBackStackEntry?.destination?.route
@@ -149,6 +147,7 @@ class ExampleInstrumentedTest {
         }
     }
 
+    // Priority to do: Medium
     @Test
     fun test_report_screen_navigates_to_fail_screen() {
         launchReportScreenWithNavigation()
@@ -157,7 +156,7 @@ class ExampleInstrumentedTest {
             onNodeWithTag(TEST_TAG_REPORT_EMAIL_INPUT).performTextInput("valid@email.com")
             onNodeWithTag(TEST_TAG_REPORT_DESCRIPTION_INPUT).performTextInput("some description")
             performDropdownSelection(WeatherType.RAINING_FISH_AND_FROGS)
-            onNodeWithTag(TEST_TAG_REPORT_BUTTON).performClick()
+            onNodeWithTag(TEST_TAG_REPORT_BUTTON).performClick() // This navigates us to success screen
             waitForIdle()
 
             val route = navController.currentBackStackEntry?.destination?.route
@@ -168,8 +167,7 @@ class ExampleInstrumentedTest {
     private fun performDropdownSelection(weatherType: WeatherType) {
         composeRule.onNodeWithTag(TEST_TAG_REPORT_WEATHER_DROPDOWN_CLICKABLE_AREA).performClick()
         composeRule.onNode(
-            hasText(weatherType.displayName),
-            useUnmergedTree = true
+            hasText(weatherType.displayName)
         ).performClick()
     }
 
