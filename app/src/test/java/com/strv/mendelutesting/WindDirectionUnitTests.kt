@@ -6,6 +6,7 @@ import org.junit.Test
 
 class WindDirectionUnitTests {
 
+    // Priority to do: High
     @Test
     fun windDirection_isCorrect1() {
         assertEquals(
@@ -14,6 +15,7 @@ class WindDirectionUnitTests {
         )
     }
 
+    // Priority to do: High
     @Test
     fun windDirection_isCorrect2() {
         assertEquals(
@@ -22,6 +24,7 @@ class WindDirectionUnitTests {
         )
     }
 
+    // Priority to do: High
     @Test
     fun windDirection_isCorrect3() {
         assertEquals(
@@ -30,6 +33,7 @@ class WindDirectionUnitTests {
         )
     }
 
+    // Priority to do: Low
     @Test
     fun windDirection_isCorrect4() {
         assertEquals(
@@ -38,6 +42,7 @@ class WindDirectionUnitTests {
         )
     }
 
+    // Priority to do: Low
     @Test
     fun windDirection_isCorrect5() {
         assertEquals(
@@ -46,6 +51,7 @@ class WindDirectionUnitTests {
         )
     }
 
+    // Priority to do: Low
     @Test
     fun windDirection_isCorrect6() {
         assertEquals(
@@ -54,6 +60,7 @@ class WindDirectionUnitTests {
         )
     }
 
+    // Priority to do: Low
     @Test
     fun windDirection_isCorrect7() {
         assertEquals(
@@ -62,6 +69,7 @@ class WindDirectionUnitTests {
         )
     }
 
+    // Priority to do: Low
     @Test
     fun windDirection_isCorrect8() {
         assertEquals(
@@ -70,6 +78,7 @@ class WindDirectionUnitTests {
         )
     }
 
+    // Priority to do: Low
     @Test
     fun windDirection_isCorrect9() {
         assertEquals(
@@ -78,6 +87,7 @@ class WindDirectionUnitTests {
         )
     }
 
+    // Priority to do: Low
     @Test
     fun windDirection_isCorrect10() {
         assertEquals(
@@ -86,6 +96,7 @@ class WindDirectionUnitTests {
         )
     }
 
+    // Priority to do: Low
     @Test
     fun windDirection_isCorrect11() {
         assertEquals(
@@ -94,6 +105,7 @@ class WindDirectionUnitTests {
         )
     }
 
+    // Priority to do: High
     @Test
     fun windDirection_isCorrect12() {
         assertEquals(

@@ -7,6 +7,7 @@ import org.junit.Test
 
 class EmailValidatorUnitTests {
 
+    // Priority to do: High
     @Test
     fun email_isValid() {
         val emailInput = "email@test.com"
@@ -16,6 +17,7 @@ class EmailValidatorUnitTests {
         )
     }
 
+    // Priority to do: High
     @Test
     fun email_isNotValid_1() {
         val emailInput = "emailtest.com"
@@ -25,6 +27,7 @@ class EmailValidatorUnitTests {
         )
     }
 
+    // Priority to do: Low
     @Test
     fun email_isNotValid_2() {
         val emailInput = "email@testcom"
@@ -34,6 +37,7 @@ class EmailValidatorUnitTests {
         )
     }
 
+    // Priority to do: Low
     @Test
     fun email_isNotValid_3() {
         val emailInput = "emailtestcom"
@@ -43,6 +47,7 @@ class EmailValidatorUnitTests {
         )
     }
 
+    // Priority to do: Low
     @Test
     fun email_isNotValid_4() {
         val emailInput = "emailtestcom"
@@ -52,6 +57,7 @@ class EmailValidatorUnitTests {
         )
     }
 
+    // Priority to do: Low
     @Test
     fun email_isNotValid_5() {
         val emailInput = "email@@test.com"
@@ -61,6 +67,7 @@ class EmailValidatorUnitTests {
         )
     }
 
+    // Priority to do: Low
     @Test
     fun email_isNotValid_5_same_but_different() {
         val emailInput = "email@@test.com"
@@ -70,6 +77,7 @@ class EmailValidatorUnitTests {
         )
     }
 
+    // Priority to do: Low
     @Test
     fun email_isNotValid_evil() {
         val emailInput = "emailtestcom"

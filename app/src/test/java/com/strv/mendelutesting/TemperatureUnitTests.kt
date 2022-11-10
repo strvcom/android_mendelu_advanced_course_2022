@@ -6,6 +6,7 @@ import org.junit.Test
 
 class TemperatureUnitTests {
 
+    // Priority to do: High
     @Test
     fun celsiusToKelvin_isCorrect1() {
         assertEquals(
@@ -15,6 +16,7 @@ class TemperatureUnitTests {
         )
     }
 
+    // Priority to do: Low
     @Test
     fun celsiusToKelvin_isCorrect2() {
         assertEquals(
@@ -24,6 +26,7 @@ class TemperatureUnitTests {
         )
     }
 
+    // Priority to do: Low
     @Test
     fun celsiusToKelvin_isCorrect3() {
         assertEquals(
@@ -33,6 +36,7 @@ class TemperatureUnitTests {
         )
     }
 
+    // Priority to do: High
     @Test
     fun celsiusToFahrenheit_isCorrect1() {
         assertEquals(
@@ -42,6 +46,7 @@ class TemperatureUnitTests {
         )
     }
 
+    // Priority to do: Low
     @Test
     fun celsiusToFahrenheit_isCorrect2() {
         assertEquals(
@@ -51,6 +56,7 @@ class TemperatureUnitTests {
         )
     }
 
+    // Priority to do: Low
     @Test
     fun celsiusToFahrenheit_isCorrect3() {
         assertEquals(
