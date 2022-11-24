@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun CameraPreview(
     modifier: Modifier = Modifier,
-    analyzer: ImageAnalysis.Analyzer,
+//    analyzer: ImageAnalysis.Analyzer,
     scaleType: PreviewView.ScaleType = PreviewView.ScaleType.FILL_CENTER,
     cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 ) {
@@ -39,7 +39,6 @@ fun CameraPreview(
                 try {
                     controller.unbind()
                     controller.cameraSelector = cameraSelector
-//                    controller.setImageAnalysisAnalyzer(context.executor, analyzer)
                     controller.bindToLifecycle(lifecycleOwner)
                     previewView.controller = controller
                 } catch (ex: Exception) {

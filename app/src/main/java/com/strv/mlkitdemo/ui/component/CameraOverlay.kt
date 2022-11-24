@@ -14,7 +14,7 @@ import com.google.mlkit.vision.objects.DetectedObject
 import com.strv.mlkitdemo.ext.fromPxToDp
 
 @Composable
-fun CameraOverlay(objects: List<DetectedObject>) {
+fun CameraOverlay(objects: List<DetectedObject> = emptyList()) {
     Box(modifier = Modifier.fillMaxSize()) {
         objects.forEach { detectedObject ->
             val rect = detectedObject.boundingBox

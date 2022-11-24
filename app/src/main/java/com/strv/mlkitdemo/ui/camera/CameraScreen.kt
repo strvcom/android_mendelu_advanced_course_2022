@@ -39,22 +39,10 @@ fun CameraScreen(
 private fun CameraScreenContent(
     modifier: Modifier = Modifier,
 ) {
-    val context = LocalContext.current
-
-    var detectedObjects by remember { mutableStateOf(listOf<DetectedObject>()) }
-
-
     Box(modifier = modifier.fillMaxSize()) {
         CameraPreview(
             modifier = Modifier,
-            analyzer = MlKitAnalyzer(
-                /* detectors = */ listOf(),
-                /* targetCoordinateSystem = */ CameraController.COORDINATE_SYSTEM_VIEW_REFERENCED,
-                /* executor = */ context.executor
-            ) { result ->
-                detectedObjects = emptyList()
-            }
         )
-        CameraOverlay(detectedObjects)
+        CameraOverlay()
     }
 }
