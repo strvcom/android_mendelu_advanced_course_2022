@@ -1,7 +1,6 @@
 name: xkcd
 description: A new Flutter project.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-
 version: 1.0.0+1
 
 environment:
@@ -12,20 +11,21 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: 1.0.5          # https://pub.dev/packages/cupertino_icons
-  # flutter_fimber: 0.6.5           # https://pub.dev/packages/flutter_fimber
-  # flutter_native_splash: 2.2.16   # https://pub.dev/packages/flutter_native_splash
-  # get: 4.6.5                      # https://pub.dev/packages/get
+  flutter_fimber: 0.6.5           # https://pub.dev/packages/flutter_fimber
+  flutter_native_splash: 2.2.16   # https://pub.dev/packages/flutter_native_splash
+  get: 4.6.5                      # https://pub.dev/packages/get
 
 dev_dependencies:
   flutter_lints: 2.0.1            # https://pub.dev/packages/flutter_lints
-  # flutter_launcher_icons: 0.11.0  # https://pub.dev/packages/flutter_launcher_icons
-  # rename: 2.0.1                   # https://pub.dev/packages/rename
+  flutter_launcher_icons: 0.11.0  # https://pub.dev/packages/flutter_launcher_icons
+  rename: 2.0.1                   # https://pub.dev/packages/rename
 
 flutter:
   uses-material-design: true
 
-  # assets:
-  #   - assets/images/app/
+  assets:
+    - assets/images/app/
+
 
 ###################################
 ######     Native Splash     ######
@@ -33,13 +33,13 @@ flutter:
 # https://pub.dev/packages/flutter_native_splash
 # flutter pub run flutter_native_splash:create
 
-# flutter_native_splash:
-#   color: "#121618"
-#   image: "assets/images/app/app_icon_splash.png"
+flutter_native_splash:
+  color: "#121618"
+  image: "assets/images/app/app_icon_splash.png"
 
-#   android_12:
-#     color: "#121618"
-#     image: "assets/images/app/app_icon_splash.png"
+  android_12:
+    color: "#121618"
+    image: "assets/images/app/app_icon_splash.png"
 
 
 ####################################
@@ -48,12 +48,13 @@ flutter:
 # https://pub.dev/packages/flutter_launcher_icons
 # flutter pub run flutter_launcher_icons:main
 
-# flutter_icons:
-#   android: true
-#   ios: true
-#   remove_alpha_ios: true
+flutter_icons:
+  android: true
+  ios: true
+  remove_alpha_ios: true
 
-#   image_path: "assets/images/app/app_icon.png"
+  image_path: "assets/images/app/app_icon.png"
   
-#   adaptive_icon_background: "#121618"
-#   adaptive_icon_foreground: "assets/images/app/app_icon_foreground.png"
+  adaptive_icon_background: "#121618"
+  adaptive_icon_foreground: "assets/images/app/app_icon_foreground.png"
+  
